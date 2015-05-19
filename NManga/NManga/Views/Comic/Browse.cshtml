@@ -1,0 +1,41 @@
+﻿@using NManga.Models;
+@{
+    ViewBag.Title = "Comic Index";
+}
+
+<h2>Comic Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Comic comic in ViewBag.Comics)
+        {
+            
+            <tr>
+                <td>
+                    @comic.Ordinal
+                </td>
+                <td>
+                    <a href="/comic/view/@comic.Ordinal/">@comic.Name</a>
+                </td>
+                <td>
+                    @comic.TimePublished.ToShortDateString()
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

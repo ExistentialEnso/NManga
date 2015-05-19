@@ -1,0 +1,25 @@
+﻿@model NManga.Models.Comic
+@{
+    ViewBag.Title = @Model.Name;
+    var previous = Model.Ordinal - 1;
+    var next = Model.Ordinal + 1;
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div id="comic">
+    <img src="/comic/image/@Model.Id/" alt="@Model.AltText" title="@Model.AltText" />
+</div>
+
+@if (Model.Ordinal > 1)
+{
+    <a href="/comic/view/1/" id="FirstLink"><< First</a>
+    <a href="/comic/view/@previous/" id="PrevLink">< Previous</a>
+}
+@if (Model.Ordinal < ViewBag.ComicCount)
+{
+    <a href="/comic/view/@next/" id="NextLink">Next ></a>
+
+    <a href="/comic/view/@ViewBag.ComicCount/" id="LastLink">Last >></a>
+}
+

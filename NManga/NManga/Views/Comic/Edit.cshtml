@@ -1,0 +1,43 @@
+﻿@model NManga.Models.Comic
+@{
+    ViewBag.Title = "Edit Comic";
+}
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Edit", "Comic", FormMethod.Post, new {enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
+{
+    @Html.HiddenFor(x => x.Id);
+    @Html.HiddenFor(x => x.Ordinal);
+    
+    <h4>Edit the comic.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.AltText, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.AltText, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Image", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" id="Image" name="upload" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Edit" />
+        </div>
+    </div>
+}
+
