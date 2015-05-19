@@ -33,7 +33,7 @@ namespace NManga.Tests.Controllers
         /// Requirement: If we are doing a lookup of objects from the database, null results should throw exceptions.
         /// </summary>
         [Test]
-        public void Id_Based_Action_Methods_Should_Throw_404_Exception_On_Null_Result()
+        public async void Id_Based_Action_Methods_Should_Throw_404_Exception_On_Null_Result()
         {
             var package = new Package();
 
@@ -42,6 +42,7 @@ namespace NManga.Tests.Controllers
             Assert.Throws(typeof(HttpException), delegate { package.Tested.View(1); });
             Assert.Throws(typeof(HttpException), delegate { package.Tested.Image(1); });
             Assert.Throws(typeof(HttpException), delegate { package.Tested.Edit(1); });
+            Assert.Throws(typeof(HttpException), async delegate { await package.Tested.Edit(new Comic(), null); });
         }
         
         /// <summary>
