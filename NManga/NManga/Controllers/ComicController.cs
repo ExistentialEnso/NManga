@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -54,7 +55,7 @@ namespace NManga.Controllers
 
             if(comic == null)
             {
-                throw new Exception("Comic with provided ID not found.");
+                throw new HttpException(404, "Not found");
             }
 
             return View(comic);
@@ -67,7 +68,7 @@ namespace NManga.Controllers
 
             if (comic == null)
             {
-                throw new Exception("Comic with provided ID not found.");
+                throw new HttpException(404, "Not found");
             }
 
             return File(comic.Content, comic.ContentType);
@@ -114,7 +115,7 @@ namespace NManga.Controllers
 
             if (comic == null)
             {
-                throw new Exception("Comic with provided ID not found.");
+                throw new HttpException(404, "Not found");
             }
 
             return View(comic);
@@ -127,7 +128,7 @@ namespace NManga.Controllers
 
             if (comic == null)
             {
-                throw new Exception("Comic with provided ID not found.");
+                throw new HttpException(404, "Not found");
             }
 
             if (ModelState.IsValid)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Mvc;
 using NManga;
 using NManga.Controllers;
@@ -31,15 +32,15 @@ namespace NManga.Tests.Controllers
         /// Requirement: If we are doing a lookup of objects from the database, null results should throw exceptions.
         /// </summary>
         [Test]
-        public void Id_Based_Action_Methods_Should_Throw_Exception_On_Null_Result()
+        public void Id_Based_Action_Methods_Should_Throw_404_Exception_On_Null_Result()
         {
             var package = new Package();
 
             // We do nothing. This will make our mock DAC always return null.
 
-            Assert.Throws(typeof(Exception), delegate { package.Tested.View(1); });
-            Assert.Throws(typeof(Exception), delegate { package.Tested.Image(1); });
-            Assert.Throws(typeof(Exception), delegate { package.Tested.Edit(1); });
+            Assert.Throws(typeof(HttpException), delegate { package.Tested.View(1); });
+            Assert.Throws(typeof(HttpException), delegate { package.Tested.Image(1); });
+            Assert.Throws(typeof(HttpException), delegate { package.Tested.Edit(1); });
         }
         
         /// <summary>
