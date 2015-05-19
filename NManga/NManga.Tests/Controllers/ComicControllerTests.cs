@@ -75,16 +75,5 @@ namespace NManga.Tests.Controllers
 
             package.ComicDacMock.Verify(x => x.GetLatestComic(), Times.Once);
         }
-
-        /// <summary>
-        /// Requirement: The homepage must gracefully handle the lack of any comics in the database.
-        /// </summary>
-        [Test]
-        public void If_No_Comics_Present_Index_Should_Throw_Exception()
-        {
-            var package = new Package();
-
-            Assert.Throws(typeof(Exception), delegate { package.Tested.Index(); });
-        }
     }
 }

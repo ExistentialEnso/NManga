@@ -40,7 +40,7 @@ namespace NManga.Controllers
 
             if (comic == null)
             {
-                throw new Exception("There are no comics in your installation of NManga.");
+                return View("NoComics");
             }
 
             return View("View", comic);
