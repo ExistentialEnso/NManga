@@ -10,6 +10,7 @@ using NUnit.Framework;
 using Moq;
 using NManga.Models;
 using NManga.DataAccess;
+using System.Web.Mvc;
 
 namespace NManga.Tests.Controllers
 {
@@ -74,6 +75,23 @@ namespace NManga.Tests.Controllers
             package.Tested.Index();
 
             package.ComicDacMock.Verify(x => x.GetLatestComic(), Times.Once);
+        }
+
+        /// <summary>
+        /// Requirement: After a successful edit or create, the user should be redirected.
+        /// </summary>
+        [Test]
+        public async void Successful_Create_Or_Should_Redirect()
+        {
+            var package = new Package();
+
+            package.ComicDacMock.Setup(x => x.GetComicByOrdinal(It.IsAny<int>())).Returns(new Comic());
+
+            var createResult = await package.Tested.Create(new Comic(), null);
+            var editResult = await package.Tested.Edit(new Comic(), null);
+
+            Assert.AreEqual(createResult.GetType(), typeof(RedirectToRouteResult));
+            Assert.AreEqual(editResult.GetType(), typeof(RedirectToRouteResult));
         }
     }
 }
