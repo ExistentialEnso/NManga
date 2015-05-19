@@ -81,7 +81,7 @@ namespace NManga.Tests.Controllers
         /// Requirement: After a successful edit or create, the user should be redirected.
         /// </summary>
         [Test]
-        public async void Successful_Create_Or_Should_Redirect()
+        public async void Successful_Create_Or_Edit_Should_Redirect()
         {
             var package = new Package();
 
